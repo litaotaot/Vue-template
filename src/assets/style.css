@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?cepmsb');
+  src:  url('fonts/icomoon.eot?cepmsb#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?cepmsb') format('truetype'),
+    url('fonts/icomoon.woff?cepmsb') format('woff'),
+    url('fonts/icomoon.svg?cepmsb#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-o-time:before {
+  content: "\e900";
+  color: #d8dce6;
+}
+.icon-o-more:before {
+  content: "\e901";
+  color: #fff;
+}
+.icon-o-message:before {
+  content: "\e902";
+  color: #fff;
+}
+.icon-o-lock:before {
+  content: "\e903";
+  color: #2d75f4;
+}
+.icon-o-user:before {
+  content: "\e904";
+  color: #2d75f4;
+}
+.icon-o-filter:before {
+  content: "\e905";
+}
+.icon-o-eclipse:before {
+  content: "\e906";
+  color: #2d75f4;
+}
+.icon-o-search:before {
+  content: "\e907";
+  color: #999;
+}
+/* .icon-o-folder .path1:before {
+  content: "\e908";
+  color: rgb(245, 166, 35);
+}
+.icon-o-folder .path2:before {
+  content: "\e909";
+  margin-left: -1.111328125em;
+  color: rgb(246, 175, 57);
+} */
+.icon-o-folder-close:before {
+  content: "\e908";
+  color: rgb(245, 166, 35);
+}
+.icon-o-folder-open:before {
+  content: "\e909";
+  margin-left: -1.111328125em;
+  color: rgb(246, 175, 57);
+}
