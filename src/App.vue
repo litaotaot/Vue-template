@@ -16,5 +16,5 @@ export default {
 
 <style lang='scss'>
 @import './style/common';
-@import './style/public';
+@import "./style/elementUi"
 </style>

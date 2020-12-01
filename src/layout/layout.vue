@@ -30,9 +30,14 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.el-container {
+  &:nth-child(2) {
+    background: $bg-rightContainer-color
+  }
+}
 .el-header {
-  max-height: 60px !important;
-  padding: 0;
+  padding: 0 20px;
+  height: 40px !important;
 }
 .el-main {
   width: 100%;

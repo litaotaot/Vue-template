@@ -1,24 +1,28 @@
 <template>
   <div class="headNav-container">
-    <div class="headNav-title">
+    <div class="inlineBeforeCuboid">
       <span>消费明细</span>
     </div>
     <div class="headNav-auth">
       <el-popover
         v-model="visible"
         placement="top"
-        width="200"
+        width="240"
         popper-class="elPopover"
       >
-        <p style="margin: 10px">用户名: zhangsan</p>
-        <p style="margin: 10px">姓  名: 张三</p>
-        <p style="margin: 10px">角  色: 系统管理员</p>
-        <div style="text-align: center; margin: 0; border-top:1px solid #999;">
-          <el-button style="margin-top: 10px;" type="primary" size="mini" @click="visible = false">退出登录</el-button>
+        <div class="auth-info">
+          <ul>
+            <li><p><span>用</span><span>户</span><span>名</span></p><p>：zhangsan</p></li>
+            <li><p><span>姓</span><span>名</span></p><p>：张三</p></li>
+            <li><p><span>角</span><span>色</span></p><p>：系统管理员</p></li>
+          </ul>
         </div>
-        <div slot="reference">
-          <span>ZhangSan</span>
-          <i class="el-icon-caret-bottom" />
+        <div class="auth-determine" style="text-align: center; margin: 0; border-top:1px solid #999;">
+          <el-button type="primary" size="mini" @click="loginOut">退出登录</el-button>
+        </div>
+        <div slot="reference" class="loginOut">
+          <span class="title">ZhangSan</span>
+          <i class="el-icon-caret-bottom titleIcon" />
         </div>
       </el-popover>
     </div>
@@ -36,6 +40,10 @@ export default {
   computed: {
   },
   methods: {
+    loginOut() {
+      this.visible = false
+      this.$store.dispatch('login/loginOut')
+    }
   }
 }
 </script>
@@ -45,29 +53,44 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background: #999999;
+  height: 40px;
+  align-items: center;
 }
-.headNav-title {
-        line-height: px2Rem(60);
-    height: px2Rem(60);
-    margin-bottom: 5px;
-    text-indent: 18px;
+
+.title {
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #666666;
+  letter-spacing: 0;
+}
+.titleIcon {
+  color: #666666;
+}
+</style>
+<style lang="scss">
+.auth-info {
+  padding: 10px 20px;
+  li {
+    margin: 10px 0;
     display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #333;
-    font-family: PingFangSC-Regular;
-    position: relative;
-        &::before {
-      content: " ";
-      position: absolute;
-      top: px2Rem(24);
-      width: px2Rem(10);
-      height: px2Rem(10);
-      border-radius: 50%;
-      background: #2D75F4;
-      box-shadow: 0 2px 4px 0 rgba(20,166,250,0.68);
-      z-index: 9;
+    color: #666666;
+    p {
+      &:nth-child(1) {
+        display: flex;
+        width: 50px;
+        white-space: nowrap;
+        justify-content: space-between;
+      }
     }
+  }
+}
+.auth-determine {
+  display: flex;
+  height: 40px;
+  justify-content: space-around;
+  align-items: center;
+}
+.loginOut {
+  cursor: pointer;
 }
 </style>

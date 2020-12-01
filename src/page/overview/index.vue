@@ -1,23 +1,76 @@
 <template>
-  <div>
+  <div class="overview">
     <div class="overview-container">
-      <h3>本年使用总览</h3>
-      <div class="overview-container-box">
-        <BarCharts chart-id="barChart" :chart-info="overviewChartInfo" />
+      <div class="inlineBeforeCuboid">
+        <span>本年使用总览</span>
+      </div>
+      <div class="overview-container-year">
+        <BarCharts chart-id="barChartYear" :chart-info="overviewChartInfo" />
+        <LineChart chart-id="lineChartYear" :chart-info="dataSizeChartInfo" />
       </div>
     </div>
     <div class="overview-container">
-      <h3>本年使用总览</h3>
+      <div class="inlineBeforeCuboid">
+        <span>月使用总览</span>
+        <span class="details" @click="monthDetails">详情</span>
+      </div>
       <div class="overview-container-box">
-        <LineChart chart-id="lineChart" :chart-info="dataSizeChartInfo" />
+        <div>
+          <el-date-picker
+            v-model="pickMonth"
+            size="small"
+            type="month"
+            placeholder="账期筛选"
+          />
+          <div>
+            <span class="inlineBeforeCircle save">存储</span>
+            <span class="inlineBeforeCircle computed">计算</span>
+            <span class="inlineBeforeCircle opera">运维</span>
+            <span class="inlineBeforeCircle deliver">交付</span>
+            <span class="inlineBeforeCircle pass">高速通道</span>
+          </div>
+        </div>
+        <div>
+          <div class="pieChart">
+            <PieChart chart-id="pieChartMonth" :chart-info="distribuChartInfo" />
+          </div>
+          <span />
+          <div class="lineChart">
+            <BarCharts chart-id="barChartMonth" :chart-info="overviewChartInfo" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="overview-container">
-      <h3>本年使用总览</h3>
-      <div class="overview-container-box">
-        <PieChart chart-id="pieChart" :chart-info="distribuChartInfo" />
+      <div class="inlineBeforeCuboid">
+        <span>用户用量</span>
+        <span class="details" @click="userDetails">详情</span>
+      </div>
+      <div>
+        <div class="overview-container-process">
+          <Process>
+            <template slot="spanContent">
+              <span>接收样本数 (2020)</span>
+            </template>
+          </Process>
+          <Process>
+            <template slot="spanContent">
+              <span>交付任务书/子项目数 (2020)</span>
+            </template>
+          </Process>
+          <Process>
+            <template slot="spanContent">
+              <span>存储情况</span>
+              <div>
+                <span class="inlineBeforeStroge hotStorage">热存储量</span>
+                <span class="inlineBeforeStroge coldStroage">冷存储量</span>
+              </div>
+            </template>
+          </Process>
+        </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -26,15 +79,18 @@ import echarts from 'echarts'
 import BarCharts from '@/components/Echarts/barChart'
 import LineChart from '@/components/Echarts/lineChart'
 import PieChart from '@/components/Echarts/pieChart'
+import Process from '@/components/Process/process'
 export default {
   name: 'Overview',
   components: {
     BarCharts,
     LineChart,
-    PieChart
+    PieChart,
+    Process
   },
   data() {
     return {
+      pickMonth: `${new Date().getFullYear() + 1}-${new Date().getMonth() + 1}`,
       overviewChartInfo: {
         title: [
           {
@@ -317,36 +373,94 @@ export default {
         }
       }
     }
+  },
+  methods: {
+    monthDetails() {
+
+    },
+    userDetails() {
+
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.overview-container {
-  width: 100%;
-  height: 400px;
-  h3 {
-    margin-bottom: 5px;
-    text-indent: 18px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #333;
-    position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 20px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #2D75F4;
-      box-shadow: 0 2px 4px 0 rgba(20,166,250,0.68);
+.overview {
+  .overview-container {
+    width: 100%;
+    // height: px2Rem(430);
+    margin-bottom: 20px;
+    .overview-container-year {
+      display: flex;
+      justify-content: space-between;
+      height: px2Rem(380);
+      div {
+        width: 49%;
+        background: #ffffff;
+        box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
+      }
+    }
+    .overview-container-box {
+      height: px2Rem(410);
+      box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
+      background: #ffffff;
+      margin-bottom: 20px;
+      >div {
+        &:nth-child(1) {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          height: px2Rem(55);
+          align-items: center;
+          box-sizing: border-box;
+          border-bottom: 1px solid #EBEFF7;
+          .inlineBeforeCircle {
+            font-size: 12px;
+            color: #666666;
+            position: relative;
+            padding: 0 14px;
+          }
+        }
+        &:nth-child(2) {
+          display: flex;
+          width: calc(100% - 2px);
+          height: px2Rem(355);
+          .pieChart {
+            width: 34%;
+          }
+          .lineChart {
+            width: 64%;
+          }
+          span {
+            display: inline-block;
+            height: 80%;
+            border-left: 2px dashed #D6D6D6;
+            margin: 2% 1% 0;
+          }
+        }
+      }
     }
   }
-  .overview-container-box {
-    height: 350px;
-    box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78)
+  .overview-container-process {
+    display: flex;
+    .process-box {
+      width: 32%;
+      &:nth-child(2) {
+        margin: 0 2%;
+      }
+    }
+    .inlineBeforeStroge {
+      position: relative;
+      font-size: 10px;
+      color: #999999;
+      padding: 0 24px;
+    }
   }
+}
+.details {
+  font-size: 14px;
+  color: #167AEB;
+  cursor: pointer;
 }
 </style>

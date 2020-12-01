@@ -23,3 +23,122 @@ html,body{
   height: 100%;
   width: 100%;
 }
+
+
+
+// before伪元素
+.inlineBeforeCuboid {
+  line-height: 20px;
+  height: 20px;
+  margin-bottom: 10px;
+  text-indent: 18px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #666666;
+  font-family: PingFangSC-Medium;
+  position: relative;
+  font-weight: bold;
+    &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    width: 8px;
+    height: 22px;
+    border-radius: 4px;
+    background: #187AEC;
+    box-shadow: 0 2px 4px 0 rgba(20,166,250,0.68);
+  }
+}
+
+.hotStorage {
+  &::before {
+    content: "";
+    width: 22px;
+    height: 6px;
+    position: absolute;
+    border-radius: 3px;
+    top: 5px;
+    left: 0px;
+    background:#3585FF;
+  }
+}
+
+.coldStroage {
+  &::before {
+    content: "";
+    width: 22px;
+    height: 6px;
+    position: absolute;
+    border-radius: 3px;
+    top: 5px;
+    left: 0px;
+    background: #0EEDF1;
+  }
+}
+
+.save {
+  &::before {
+    content: "";
+    width: 9.6px;
+    height: 9.6px;
+    position: absolute;
+    border-radius: 50%;
+    top: 4px;
+    left: 0px;
+    background:#50EDC9;
+  }
+}
+
+.computed {
+  &::before {
+    content: "";
+    width: 9.6px;
+    height: 9.6px;
+    position: absolute;
+    border-radius: 50%;
+    top: 4px;
+    left: 0px;
+    background: #3585FF;
+  }
+}
+
+.opera {
+  &::before {
+    content: "";
+    width: 9.6px;
+    height: 9.6px;
+    position: absolute;
+    border-radius: 50%;
+    top: 4px;
+    left: 0px;
+    background: #F7B529;
+  }
+}
+
+.deliver {
+  &::before {
+    content: "";
+    width: 9.6px;
+    height: 9.6px;
+    position: absolute;
+    border-radius: 50%;
+    top: 4px;
+    left: 0px;
+    background: #FC6761;
+  }
+}
+
+.pass {
+  &::before {
+    content: "";
+    width: 9.6px;
+    height: 9.6px;
+    position: absolute;
+    border-radius: 50%;
+    top: 4px;
+    left: 0px;
+    background: #B373EB;
+  }
+}
+

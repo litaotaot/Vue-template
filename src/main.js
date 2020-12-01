@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import store from './store'
 import router from './router/router'
 import ElementUI from 'element-ui'
+import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 import App from './App.vue'
 import 'element-ui/lib/theme-chalk/index.css'
 
