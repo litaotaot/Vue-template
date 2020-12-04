@@ -5,8 +5,35 @@
         <span>本年使用总览</span>
       </div>
       <div class="overview-container-year">
-        <BarCharts chart-id="barChartYear" :chart-info="overviewChartInfo" />
-        <LineChart chart-id="lineChartYear" :chart-info="dataSizeChartInfo" />
+        <div>
+          <div class="year-top">
+            <span>近六个月费用及任务数</span>
+            <div>
+              <span class="inlineBeforeCircle save">存储</span>
+              <span class="inlineBeforeCircle computed">计算</span>
+              <span class="inlineBeforeCircle opera">运维</span>
+              <span class="inlineBeforeCircle deliver">交付</span>
+              <span class="inlineBeforeCircle pass">高速通道</span>
+            </div>
+          </div>
+          <div class="year-bottom">
+            <p class="chartsTxt-public yearCost">总费用：<span>￥36213</span>任务数：<span>2190</span></p>
+            <BarCharts chart-id="barChartYear" :chart-info="overviewChartInfo" />
+          </div>
+        </div>
+        <div>
+          <div class="year-top">
+            <span>存储情况</span>
+            <div>
+              <span class="inlineBeforeStroge hotStorage">热存储量</span>
+              <span class="inlineBeforeStroge coldStroage">冷存储量</span>
+            </div>
+          </div>
+          <div class="year-bottom">
+            <p class="chartsTxt-public yearStroge">热存数据量：<span>100<i>PB</i></span>   冷存数据量：<span>30</span>PB</p>
+            <LineChart chart-id="lineChartYear" :chart-info="dataSizeChartInfo" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="overview-container">
@@ -18,7 +45,7 @@
         <div>
           <el-date-picker
             v-model="pickMonth"
-            size="small"
+
             type="month"
             placeholder="账期筛选"
           />
@@ -32,10 +59,12 @@
         </div>
         <div>
           <div class="pieChart">
+            <p class="chartsTxt-public">费用分布 (2020-11)</p>
             <PieChart chart-id="pieChartMonth" :chart-info="distribuChartInfo" />
           </div>
           <span />
           <div class="lineChart">
+            <p class="chartsTxt-public">每月费用及任务 (2020-11)</p>
             <BarCharts chart-id="barChartMonth" :chart-info="overviewChartInfo" />
           </div>
         </div>
@@ -92,283 +121,223 @@ export default {
     return {
       pickMonth: `${new Date().getFullYear() + 1}-${new Date().getMonth() + 1}`,
       overviewChartInfo: {
-        title: [
-          {
-            text: `总费用: `,
-            textStyle: {
-              color: '#666',
-              fontSize: '16',
-              fontWeight: 'normal'
-            },
-            left: 0,
-            top: 4
-          },
-          {
-            text: `￥362134`,
-            textStyle: {
-              color: 'red',
-              fontSize: '26',
-              fontWeight: 'normal'
-            },
-            left: 55
-          },
-          {
-            text: `   任务数: `,
-            textStyle: {
-              color: '#666',
-              fontSize: '16',
-              fontWeight: 'normal'
-            },
-            left: 180,
-            top: 4
-          },
-          {
-            text: `￥3621`,
-            textStyle: {
-              color: 'yellow',
-              fontSize: '26',
-              fontWeight: 'normal'
-            },
-            left: 250
-          }
-        ],
         tooltip: {
           formatter: (params) => {
             const div = document.createElement('div')
+            const div1 = document.createElement('div')
             const time = document.createElement('p')
+            const totalCost = document.createElement('p')
+            const task = document.createElement('p')
+            // const tipType = ['save', 'computed', 'opera', 'deliver', 'pass']
+            // tipType.map(item => {
+
+            // })
+
+            const saveP = document.createElement('p')
+            const computedP = document.createElement('p')
+            const operaP = document.createElement('p')
+            const deliverP = document.createElement('p')
+            const passP = document.createElement('p')
+            const saveSpan = document.createElement('span')
+            const computedSpan = document.createElement('span')
+            const operaSpan = document.createElement('span')
+            const deliverSpan = document.createElement('span')
+            const passSpan = document.createElement('span')
+
             const date = new Date()
+            div.style.padding = '10px 40px 10px 20px'
             time.innerHTML = `${date.getFullYear()} - ${date.getMonth() + 1 < 10 ? '0' + date.getMonth() : date.getMonth() + 1}`
+            time.className = 'tooltipTitle'
+            totalCost.innerHTML = `当月总费用 ￥5000`
+            totalCost.className = 'tooltipTitle'
+            task.innerHTML = `当月任务数 4134`
+            task.className = 'tooltipTitle'
+
+            saveSpan.innerHTML = '存储：1000 20%'
+            saveSpan.className = 'tooltipStroge tooltipSave'
+            saveP.appendChild(saveSpan)
+            saveP.className = 'tooltipStrogeP'
+
+            computedSpan.innerHTML = '计算：1000 20%'
+            computedSpan.className = 'tooltipStroge tooltipComputed'
+            computedP.appendChild(computedSpan)
+            computedP.className = 'tooltipStrogeP'
+
+            operaSpan.innerHTML = '运维：1000 20%'
+            operaSpan.className = 'tooltipStroge tooltipOprea'
+            operaP.appendChild(operaSpan)
+            operaP.className = 'tooltipStrogeP'
+
+            deliverSpan.innerHTML = '交付：1000 20%'
+            deliverSpan.className = 'tooltipStroge tooltipDliver'
+            deliverP.appendChild(deliverSpan)
+            deliverP.className = 'tooltipStrogeP'
+
+            passSpan.innerHTML = '高速通道：1000 20%'
+            passSpan.className = 'tooltipStroge tooltipPass'
+            passP.appendChild(passSpan)
+            passP.className = 'tooltipStrogeP'
+
             div.appendChild(time)
-            return div.innerHTML
+            div.appendChild(totalCost)
+            div.appendChild(task)
+            div.appendChild(saveP)
+            div.appendChild(computedP)
+            div.appendChild(operaP)
+            div.appendChild(deliverP)
+            div.appendChild(passP)
+            div1.appendChild(div)
+            return div1.innerHTML
           }
         },
-        legend: {
-          data: [
-            {
-              name: '存储',
-              icon: 'pin',
-              textStyle: {
-                color: '#666'
-              }
-            },
-            {
-              name: '计算',
-              icon: 'pin',
-              textStyle: {
-                color: '#666'
-              }
-            },
-            {
-              name: '运维',
-              icon: 'pin',
-              textStyle: {
-                color: '#666'
-              }
-            },
-            {
-              name: '交付',
-              icon: 'pin',
-              textStyle: {
-                color: '#666'
-              }
-            },
-            {
-              name: '高速通道',
-              icon: 'pin',
-              textStyle: {
-                color: '#666'
-              }
-            }
-          ]
-        },
         xAxis: {
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: ['1月', '2月', '3月', '4月', '5月', '6月']
         },
         series: [
           {
             name: '存储',
             type: 'bar',
             stack: '广告',
-            data: [120, 132, 101, 134, 90, 230, 210],
+            data: [120, 132, 101, 134, 90, 230],
+            barMaxWidth: 30,
             itemStyle: {
-              color: 'skyBlue',
-              borderColor: '#ffffff'
-            },
-            backgroundStyle: {
-              borderColor: '#fff'
+              color: '#50EDC9'
+              // borderColor: '#ffffff'
             }
+            // backgroundStyle: {
+            //   borderColor: '#fff'
+            // }
           },
           {
             name: '计算',
             type: 'bar',
             stack: '广告',
-            data: [220, 182, 191, 234, 290, 330, 310],
+            data: [220, 182, 191, 234, 290, 330],
             itemStyle: {
-              color: 'green'
+              color: '#3585FF'
             }
           },
           {
             name: '运维',
             type: 'bar',
             stack: '广告',
-            data: [150, 232, 201, 154, 190, 330, 410]
+            data: [150, 232, 201, 154, 190, 330],
+            itemStyle: {
+              color: '#F7B529 '
+            }
           },
           {
             name: '交付',
             type: 'bar',
             stack: '广告',
-            data: [120, 242, 201, 154, 190, 330, 410]
+            data: [120, 242, 201, 154, 190, 330],
+            itemStyle: {
+              color: '#FC6761 '
+            }
           },
           {
             name: '高速通道',
             type: 'bar',
             stack: '广告',
-            data: [150, 232, 201, 154, 190, 330, 410]
+            data: [150, 232, 201, 154, 190, 330],
+            itemStyle: {
+              color: '#B373EB '
+            }
           },
           {
             name: '任务数',
             type: 'line',
-            data: [400, 782, 351, 604, 540, 580, 860],
+            data: [1400, 1782, 1351, 1604, 1140, 1580],
             symbol: 'none',
             lineStyle: {
-              color: 'yellow'
+              color: '#F2AA43'
             }
           }
         ]
       },
       dataSizeChartInfo: {
-        title: [
-          {
-            text: `总费用: `,
-            textStyle: {
-              color: '#666',
-              fontSize: '16',
-              fontWeight: 'normal'
-            },
-            left: 0,
-            top: 4
-          },
-          {
-            text: `￥362134`,
-            textStyle: {
-              color: 'red',
-              fontSize: '26',
-              fontWeight: 'normal'
-            },
-            left: 55
-          },
-          {
-            text: `   任务数: `,
-            textStyle: {
-              color: '#666',
-              fontSize: '16',
-              fontWeight: 'normal'
-            },
-            left: 180,
-            top: 4
-          },
-          {
-            text: `￥3621`,
-            textStyle: {
-              color: 'yellow',
-              fontSize: '26',
-              fontWeight: 'normal'
-            },
-            left: 250
-          }
-        ],
-        legend: [
-          {
-            name: '热存储量',
-            icon: 'roundRect',
-            textStyle: {
-              color: '#666'
-            }
-          },
-          {
-            name: '冷村储量',
-            icon: 'roundRect',
-            textStyle: {
-              color: '#666'
-            }
-          }
-        ],
         xAxis: {
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
         },
         series: [
           {
             name: '热存储量',
             type: 'line',
-            data: [120, 132, 101, 134, 90, 230, 210],
+            data: [120, 132, 101, 134, 90, 120, 132, 101, 134, 90, 230, 210],
+            symbol: 'none',
             itemStyle: {
-              color: '#8ec6ad'
+              color: '#3585FF'
             },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                 offset: 0,
-                color: '#8ec6ad'
+                color: 'rgba(53,133,255,0.20)'
               }, {
                 offset: 1,
-                color: '#ffe'
+                color: 'rgba(1,213,171,0.02)'
               }])
             }
           },
           {
             name: '冷村储量',
             type: 'line',
-            data: [220, 182, 191, 234, 290, 330, 310],
+            data: [220, 182, 191, 234, 290, 330, 310, 220, 182, 191, 234, 290],
+            symbol: 'none',
             itemStyle: {
-              color: '#d68262'
+              color: '#0EEDF1'
             },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                 offset: 0,
-                color: '#d68262'
+                color: 'rgba(14,237,241,0.20)'
               }, {
                 offset: 1,
-                color: '#ffe'
+                color: 'rgba(1,213,171,0.02)'
               }])
             }
           }
         ]
       },
       distribuChartInfo: {
-        title: [
-          {
-            text: `费用分布 (2020-4) `,
-            textStyle: {
-              color: '#666',
-              fontSize: '16',
-              fontWeight: 'normal'
-            },
-            left: 0,
-            top: 4
-          }
-        ],
-        legend: {
-          data: [
-            { name: '存储', icon: 'roundRect', textStyle: { color: '#666' }},
-            { name: '计算', icon: 'roundRect', textStyle: { color: '#666' }},
-            { name: '运维', icon: 'roundRect', textStyle: { color: '#666' }},
-            { name: '交付', icon: 'roundRect', textStyle: { color: '#666' }},
-            { name: '高速通道', icon: 'roundRect', textStyle: { color: '#666' }}
-          ],
-          formatter: (name) => {
-            return 'Legend ' + name
+        tooltip: {
+          formatter: (params) => {
+            const div = document.createElement('div')
+            const div1 = document.createElement('div')
+
+            const saveP = document.createElement('p')
+            const saveSpan = document.createElement('span')
+
+            saveSpan.innerHTML = '存储：1000 20%'
+            saveSpan.className = 'tooltipStroge tooltipSavePie'
+            saveP.appendChild(saveSpan)
+            saveP.className = 'tooltipStrogeP'
+
+            div.appendChild(saveP)
+            div1.appendChild(div)
+            return div1.innerHTML
           }
         },
         graphic: {
-          text: '运动达标率\n\n80%'
+          text: '当月总费用\n\n￥50000'
         },
         series: {
           name: '当月总消费',
           data: [
-            { value: 335, name: '存储' },
-            { value: 310, name: '计算' },
-            { value: 234, name: '运维' },
-            { value: 135, name: '交付' },
-            { value: 1548, name: '高速通道' }
+            { value: 335, name: '存储', itemStyle: {
+              color: '#50EDC9'
+            }},
+            { value: 1310, name: '计算', itemStyle: {
+              color: '#3585FF'
+            }},
+            { value: 234, name: '运维', itemStyle: {
+              color: '#F7B529'
+            }},
+            { value: 135, name: '交付', itemStyle: {
+              color: '#FC6761'
+            }},
+            { value: 548, name: '高速通道', itemStyle: {
+              color: '#B373EB'
+            }}
           ]
         }
       }
@@ -376,10 +345,12 @@ export default {
   },
   methods: {
     monthDetails() {
-
+      // this.$router.push({ path: '/consumption' })
+      this.$router.push({ path: '/overview/consumption' })
+      // 需匹配左侧menu
     },
     userDetails() {
-
+      this.$router.push({ path: '/overview/user' })
     }
   }
 }
@@ -395,10 +366,68 @@ export default {
       display: flex;
       justify-content: space-between;
       height: px2Rem(380);
-      div {
+      >div {
         width: 49%;
         background: #ffffff;
         box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
+        .year-top {
+          width: 100%;
+          height: px2Rem(45);
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          align-items: center;
+          box-sizing: border-box;
+          border-bottom: 1px solid #EBEFF7;
+          span {
+            font-size: 14px;
+            color: #666666;
+          }
+          .inlineBeforeCircle {
+            font-size: 12px;
+            color: #666666;
+            position: relative;
+            padding: 0 14px;
+          }
+        }
+        .year-bottom {
+          position: relative;
+          .yearCost {
+            span {
+              &:nth-child(1) {
+                font-size: 14px;
+                color: #FC6761;
+                padding-right: 10px;
+              }
+              &:nth-child(2) {
+                font-size: 14px;
+                color: #F7B529;
+              }
+            }
+          }
+          .yearStroge {
+            span {
+              &:nth-child(1) {
+                font-size: 14px;
+                color: #3585FF;
+                padding-right: 10px;
+                i {
+                  color: #666666;
+                }
+              }
+              &:nth-child(2) {
+                font-size: 14px;
+                color: #0EEDF1;
+              }
+            }
+          }
+          .barChart-container {
+            height: px2Rem(335);
+          }
+          .lineChart-container {
+            height: px2Rem(335);
+          }
+        }
       }
     }
     .overview-container-box {
@@ -450,13 +479,20 @@ export default {
         margin: 0 2%;
       }
     }
-    .inlineBeforeStroge {
-      position: relative;
-      font-size: 10px;
-      color: #999999;
-      padding: 0 24px;
-    }
   }
+}
+.inlineBeforeStroge {
+  position: relative;
+  font-size: 10px;
+  color: #999999;
+  padding: 0 24px;
+}
+.chartsTxt-public {
+  font-size: 16px;
+  color: #666666;
+  position: absolute;
+  padding: 10px;
+  line-height: 20px;
 }
 .details {
   font-size: 14px;

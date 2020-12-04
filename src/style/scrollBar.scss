@@ -1,0 +1,48 @@
+// 竖向滚动条
+.is-scroll-right::-webkit-scrollbar,
+.is-scroll-left::-webkit-scrollbar,
+.el-scrollbar::-webkit-scrollbar {
+    width: $thumb-width-v;
+    height: $thumb-width-h !important;
+}
+/*定义滚动条轨道
+ 内阴影+圆角*/
+.el-scrollbar::-webkit-scrollbar-track {
+    box-shadow:0px 1px 3px rgba(0,0,0,0.1) inset;
+    border-radius: $thumb-border-radius;  
+    background-color: $thumb-track-color;
+}
+/*滑块 滚动条的内阴影*/
+.is-scroll-right::-webkit-scrollbar-thumb,
+.is-scroll-left::-webkit-scrollbar-thumb,
+.el-scrollbar::-webkit-scrollbar-thumb {
+    box-shadow:0px 1px 3px rgba(0,0,0,0.1) inset;
+    background-color:$thumb-color;
+    border-radius: $thumb-border-radius;
+}
+//table 滚动条
+::-webkit-scrollbar {
+    width:$thumb-width-v;
+    height:$thumb-width-h;
+}
+::-webkit-scrollbar-track {
+    box-shadow:0px 1px 3px rgba(0,0,0,0.1) inset;
+    background-color:$thumb-track-color;
+    border-radius: $thumb-border-radius;  
+}
+::-webkit-scrollbar-thumb
+{
+    box-shadow:0px 1px 3px rgba(0,0,0,0.1) inset;
+    background-color:$thumb-color;
+    border-radius: $thumb-border-radius;  
+}
+// .table_container {
+// }
+// 横向滚动条
+::-webkit-scrollbar:horizontal {
+    width:0;
+    height:$thumb-width-h !important;
+}
+::-webkit-scrollbar-track:horizontal {
+    background-color:$thumb-track-color;
+}

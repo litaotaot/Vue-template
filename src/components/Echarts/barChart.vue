@@ -5,6 +5,7 @@
 <script>
 import echarts from 'echarts'
 import resize from './mixins/resize'
+// import variables from '@/style/variables.scss'
 export default {
   name: 'BarChart',
   mixins: [resize],
@@ -39,6 +40,8 @@ export default {
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           },
           backgroundColor: 'rgba(255,255,255,0.7)',
+          borderColor: '#EBEFF7',
+          borderWidth: 1,
           textStyle: {
             color: '#666',
             fontSize: 14,
@@ -47,7 +50,7 @@ export default {
           formatter: this.chartInfo.tooltip && this.chartInfo.tooltip.formatter ? this.chartInfo.tooltip.formatter : null
         },
         legend: {
-          data: this.chartInfo.legend.data || [],
+          data: this.chartInfo.legend && this.chartInfo.legend.data || [],
           right: 0
         },
         grid: {
@@ -59,18 +62,18 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: this.chartInfo.xAxis.data || [],
+            data: this.chartInfo.xAxis && this.chartInfo.xAxis.data || [],
             show: true,
             axisLabel: {
               show: true,
               textStyle: {
-                color: '#c3dbff', // 更改坐标轴文字颜色
-                fontSize: 14 // 更改坐标轴文字大小
+                color: '#999999', // 更改坐标轴文字颜色
+                fontSize: 10 // 更改坐标轴文字大小
               }
             },
             axisLine: { // 改变x轴样式
               lineStyle: {
-                color: '#e33b38',
+                color: '#D7D7D7',
                 width: 1 // 这里是为了突出显示加上的
               }
             },
@@ -87,6 +90,22 @@ export default {
                 type: 'dashed'
               },
               show: true
+            },
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: '#999999', // 更改坐标轴文字颜色
+                fontSize: 10 // 更改坐标轴文字大小
+              }
+            },
+            axisLine: { // 改变y轴样式
+              lineStyle: {
+                color: '#D7D7D7',
+                width: 1 // 这里是为了突出显示加上的
+              }
+            },
+            axisTick: { // y轴刻度线
+              show: false
             }
           }
         ],

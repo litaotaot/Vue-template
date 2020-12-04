@@ -31,7 +31,7 @@ export default {
 
 <style lang='scss' scoped>
 .el-container {
-  &:nth-child(2) {
+  .el-containe {
     background: $bg-rightContainer-color
   }
 }
@@ -42,6 +42,5 @@ export default {
 .el-main {
   width: 100%;
   height: 100%;
-  // box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
 }
 </style>

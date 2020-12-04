@@ -58,23 +58,23 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: this.chartInfo.xAxis.data || [],
+            data: this.chartInfo.xAxis && this.chartInfo.xAxis.data || [],
             show: true,
             axisLabel: {
               show: true,
               textStyle: {
                 color: '#999', // 更改坐标轴文字颜色
-                fontSize: 14 // 更改坐标轴文字大小
+                fontSize: 10 // 更改坐标轴文字大小
               }
             },
             axisLine: { // 改变x轴样式
               lineStyle: {
-                color: '#999',
+                color: '#D7D7D7',
                 width: 1 // 这里是为了突出显示加上的
               }
             },
             axisTick: {
-              alignWithLabel: true
+              alignWithLabel: !(this.chartInfo.xAxis && this.chartInfo.xAxis.alignWithLabel === false)
             }
           }
         ],
@@ -87,11 +87,21 @@ export default {
               },
               show: true
             },
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: '#999999', // 更改坐标轴文字颜色
+                fontSize: 10 // 更改坐标轴文字大小
+              }
+            },
             axisLine: { // 改变y轴样式
               lineStyle: {
-                color: '#999',
+                color: '#D7D7D7',
                 width: 1 // 这里是为了突出显示加上的
               }
+            },
+            axisTick: {
+              alignWithLabel: true
             }
           }
         ],

@@ -1,4 +1,27 @@
-// el-popover
 .el-popover {
   padding: 0 !important;
+}
+
+.el-table {
+  th {
+    background: $table-th-bak !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: $table-th-color;
+  }
+  td {
+    padding: 5px 0;
+  }
+}
+
+.is-light {
+   .popper__arrow {
+    border: none;
+    &::after{
+      box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
+      border-top-color: white;
+    }
+  }
+  box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
+  border: none !important;
 }

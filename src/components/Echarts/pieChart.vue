@@ -35,7 +35,10 @@ export default {
         title: this.chartInfo.title || [],
         tooltip: {
           trigger: 'item',
-          formatter: '{a} <br/>{b}: {c} ({d}%)'
+          backgroundColor: 'rgba(255,255,255,0.7)', // 悬浮框背景色
+          borderColor: '#EBEFF7',
+          borderWidth: 1,
+          formatter: this.chartInfo.tooltip && this.chartInfo.tooltip.formatter || ''
         },
         legend: {
           orient: 'vertical',
@@ -45,7 +48,7 @@ export default {
             lineHeight: 20
           },
           formatter: this.chartInfo.legend && this.chartInfo.legend.formatter ? this.chartInfo.legend.formatter : null,
-          data: this.chartInfo.legend.data || [],
+          data: this.chartInfo.legend && this.chartInfo.legend.data || [],
           right: 0
         },
         grid: {
@@ -59,7 +62,7 @@ export default {
           left: 'center',
           top: '40%',
           style: {
-            text: this.chartInfo.graphic.text || ' ',
+            text: this.chartInfo.graphic && this.chartInfo.graphic.text || ' ',
             textAlign: 'center',
             fill: '#333',
             fontSize: 20,
@@ -68,7 +71,7 @@ export default {
         },
         series: [
           {
-            name: this.chartInfo.series.name || ' ',
+            name: this.chartInfo.series && this.chartInfo.series.name || ' ',
             type: 'pie',
             radius: ['50%', '70%'],
             emphasis: {
@@ -86,6 +89,10 @@ export default {
                   color: '#999999' // 改变标示线的颜色
                 }
               }
+            },
+            label: {
+              color: '#666666',
+              fontSize: 14
             },
             data: this.chartInfo.series.data || []
           }

@@ -13,5 +13,43 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script type="text/javascript">
+      //根据移动端设备的屏幕分辨率计算出合适的根元素的大小
+      //限制当为设备宽度小于1024之后，font-size不再继续减少,大于3600，不再增大
+      (function (doc, win) {
+        var docEl = win.document.documentElement;
+        var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+        var refreshRem = function () {
+          var clientWidth = win.innerWidth
+          || doc.documentElement.clientWidth
+          || doc.body.clientWidth;
+      
+          if (!clientWidth) return;
+          var fz;
+          var width = clientWidth<1024?1024:(clientWidth>3600?3600:clientWidth);
+          fz = width / 100;
+          docEl.style.fontSize = fz + 'px';
+          localStorage.setItem('baseSize',fz)
+          //插入样式
+          var style = document.getElementById("styleId") || document.createElement("style")
+          style.id="styleId"
+          style.innerHTML = ""
+          try{
+          　　style.appendChild(document.createTextNode("html{font-size:"+fz+"px}"));
+          }catch(ex){
+          　　style.styleSheet.cssText = "html{font-size:"+fz+"px}";//针对IE
+          }
+          if(!document.getElementById("styleId")) {
+            var head = document.getElementsByTagName("head")[0];
+            head.appendChild(style);
+          }
+      };
+      
+      if (!doc.addEventListener) return;
+      win.addEventListener(resizeEvt, refreshRem, false);
+      doc.addEventListener('DOMContentLoaded', refreshRem, false);
+      refreshRem();
+      })(document, window);
+    </script>
   </body>
 </html>

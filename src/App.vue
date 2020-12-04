@@ -16,5 +16,6 @@ export default {
 
 <style lang='scss'>
 @import './style/common';
-@import "./style/elementUi"
+@import "./style/elementUi";
+@import "./style/scrollBar"
 </style>

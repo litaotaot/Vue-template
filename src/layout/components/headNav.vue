@@ -1,9 +1,11 @@
 <template>
   <div class="headNav-container">
-    <div class="inlineBeforeCuboid">
-      <span>消费明细</span>
+    <div v-if="title" class="inlineBeforeCuboid titleCudoid">
+      <span>{{ title }}</span>
     </div>
+    <div v-else />
     <div class="headNav-auth">
+      <span>统计截止日期：{{ finalDate }}</span>
       <el-popover
         v-model="visible"
         placement="top"
@@ -30,19 +32,44 @@
 </template>
 
 <script>
+import { formatDate } from '@/utils/mUtils'
 export default {
   name: 'HeadNav',
   data() {
     return {
-      visible: false
+      visible: false,
+      title: '',
+      finalDate: formatDate(new Date(), 3)
     }
   },
-  computed: {
+  watch: {
+    $route(e) {
+      this.getTitle(e)
+    }
+  },
+  mounted() {
+    this.getTitle(this.$route)
   },
   methods: {
     loginOut() {
       this.visible = false
       this.$store.dispatch('login/loginOut')
+    },
+    getTitle(e) {
+      switch (e.name) {
+        case 'overview_user':
+          this.title = '用户明细'
+          break
+        case 'overview_consumption':
+          this.title = '消费明细'
+          break
+        case 'projectBill':
+          this.title = '子项目账单'
+          break
+        default:
+          this.title = ''
+          break
+      }
     }
   }
 }
@@ -55,6 +82,9 @@ export default {
   justify-content: space-between;
   height: 40px;
   align-items: center;
+  .titleCudoid {
+    margin-bottom: 0;
+  }
 }
 
 .title {
@@ -65,6 +95,14 @@ export default {
 }
 .titleIcon {
   color: #666666;
+}
+.headNav-auth {
+  display: flex;
+  > span {
+    font-size: 14px;
+    color: #666666;
+    padding-right: px2Rem(20);
+  }
 }
 </style>
 <style lang="scss">
@@ -93,4 +131,5 @@ export default {
 .loginOut {
   cursor: pointer;
 }
+
 </style>
