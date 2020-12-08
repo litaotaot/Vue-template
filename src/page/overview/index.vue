@@ -59,12 +59,12 @@
         </div>
         <div>
           <div class="pieChart">
-            <p class="chartsTxt-public">费用分布 (2020-11)</p>
+            <p class="chartsTxt-public chartsTxt-publicM">费用分布 (2020-11)</p>
             <PieChart chart-id="pieChartMonth" :chart-info="distribuChartInfo" />
           </div>
           <span />
           <div class="lineChart">
-            <p class="chartsTxt-public">每月费用及任务 (2020-11)</p>
+            <p class="chartsTxt-public chartsTxt-publicM">每月费用及任务 (2020-11)</p>
             <BarCharts chart-id="barChartMonth" :chart-info="overviewChartInfo" />
           </div>
         </div>
@@ -79,17 +79,17 @@
         <div class="overview-container-process">
           <Process>
             <template slot="spanContent">
-              <span>接收样本数 (2020)</span>
+              <div>接收样本数 (2020)</div>
             </template>
           </Process>
           <Process>
             <template slot="spanContent">
-              <span>交付任务书/子项目数 (2020)</span>
+              <div>交付任务书/子项目数 (2020)</div>
             </template>
           </Process>
           <Process>
             <template slot="spanContent">
-              <span>存储情况</span>
+              <div>存储情况</div>
               <div>
                 <span class="inlineBeforeStroge hotStorage">热存储量</span>
                 <span class="inlineBeforeStroge coldStroage">冷存储量</span>
@@ -379,7 +379,8 @@ export default {
           align-items: center;
           box-sizing: border-box;
           border-bottom: 1px solid #EBEFF7;
-          span {
+          > span {
+            font-family: $font-family-typeM;
             font-size: 14px;
             color: #666666;
           }
@@ -483,20 +484,27 @@ export default {
 }
 .inlineBeforeStroge {
   position: relative;
-  font-size: 10px;
-  color: #999999;
+  font-family: $font-family-typeR !important;
+  font-size: 10px !important;
+  color: #999999 !important;
   padding: 0 24px;
 }
 .chartsTxt-public {
-  font-size: 16px;
+  font-size: 14px;
   color: #666666;
+  font-family: $font-family-typeR;
   position: absolute;
   padding: 10px;
   line-height: 20px;
 }
+.chartsTxt-publicM {
+  font-family: $font-family-typeM;
+}
 .details {
+  font-family: $font-family-typeM;
   font-size: 14px;
   color: #167AEB;
   cursor: pointer;
+  font-weight: normal;
 }
 </style>

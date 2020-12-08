@@ -41,7 +41,7 @@ html,body{
   justify-content: space-between;
   font-size: 16px;
   color: #666666;
-  font-family: PingFangSC-Medium;
+  font-family: $font-family-typeM;
   position: relative;
   font-weight: bold;
     &::before {
@@ -63,7 +63,7 @@ html,body{
     height: 6px;
     position: absolute;
     border-radius: 3px;
-    top: 7px;
+    top: 6px;
     left: 0px;
     background:#3585FF;
   }
@@ -76,7 +76,7 @@ html,body{
     height: 6px;
     position: absolute;
     border-radius: 3px;
-    top: 7px;
+    top: 6px;
     left: 0px;
     background: #0EEDF1;
   }

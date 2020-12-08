@@ -130,7 +130,7 @@ export default {
       console.log(px2Rem(40))
 
       this.$nextTick(() => {
-        this.tableHeight = document.body.clientHeight - px2Rem(40) - 23 - 40 - 40 - 52
+        this.tableHeight = document.body.clientHeight - px2Rem(40) - 20 - 40 - 40 - 52
         console.log(this.tableHeight)
       })
     }
@@ -150,8 +150,9 @@ export default {
     width: 68%;
     box-sizing: border-box;
     h2 {
+      font-family: $font-family-typeM;
       padding: px2Rem(10);
-      font-size: 20px;
+      font-size: 18px;
       color: #666666;
       font-weight: normal;
       margin-bottom: px2Rem(10);
@@ -164,9 +165,9 @@ export default {
     box-sizing: border-box;
     overflow-y: auto;
     color: #666666;
-    max-height: px2Rem(856);
     h3 {
-        font-size: 20px;
+        font-family: $font-family-typeM;
+        font-size: 18px;
         padding: px2Rem(10) 0;
         font-weight: normal;
     }

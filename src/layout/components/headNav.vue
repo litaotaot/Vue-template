@@ -1,7 +1,7 @@
 <template>
   <div class="headNav-container">
-    <div v-if="title" class="inlineBeforeCuboid titleCudoid">
-      <span>{{ title }}</span>
+    <div v-if="titleInfo.title" class="inlineBeforeCuboid titleCudoid">
+      <span>{{ titleInfo.title }}<el-tooltip v-if="titleInfo.icon" effect="light" :content="titleInfo.content" placement="bottom-start"><i class="color pointer el-icon-warning-outline" /></el-tooltip></span>
     </div>
     <div v-else />
     <div class="headNav-auth">
@@ -38,7 +38,11 @@ export default {
   data() {
     return {
       visible: false,
-      title: '',
+      titleInfo: {
+        title: '',
+        icon: '',
+        content: ''
+      },
       finalDate: formatDate(new Date(), 3)
     }
   },
@@ -58,16 +62,22 @@ export default {
     getTitle(e) {
       switch (e.name) {
         case 'overview_user':
-          this.title = '用户明细'
+          this.titleInfo.title = '用户明细'
+          this.titleInfo.icon = ''
           break
         case 'overview_consumption':
-          this.title = '消费明细'
+          this.titleInfo.title = '消费明细'
+          this.titleInfo.icon = 'el-icon-warning-outline'
+          this.titleInfo.content = '本月数据中包含未结算的后付费数据，查询结果仅供参考，不作为对账依据。本月最终账单将在次月初生成，在次月4日10点后可查看。'
           break
         case 'projectBill':
-          this.title = '子项目账单'
+          this.titleInfo.title = '子项目账单'
+          this.titleInfo.icon = ''
           break
         default:
-          this.title = ''
+          this.titleInfo.title = ''
+          this.titleInfo.icon = ''
+          this.titleInfo.content = ''
           break
       }
     }
@@ -84,6 +94,12 @@ export default {
   align-items: center;
   .titleCudoid {
     margin-bottom: 0;
+    .pointer {
+      cursor: pointer;
+    }
+    .color {
+      color: #666666;
+    }
   }
 }
 
@@ -104,6 +120,7 @@ export default {
     padding-right: px2Rem(20);
   }
 }
+
 </style>
 <style lang="scss">
 .auth-info {

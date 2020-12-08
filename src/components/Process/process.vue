@@ -108,14 +108,15 @@ export default {
   box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
   padding: 10px;
   .top {
-    height: px2Rem(50);
+    height: px2Rem(40);
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 px2Rem(10);
     align-items: center;
     box-sizing: border-box;
     border-bottom: 1px solid #EBEFF7;
-    span {
+    div {
+      font-family: $font-family-typeM;
       font-size: 14px;
       color: #666666;
     }

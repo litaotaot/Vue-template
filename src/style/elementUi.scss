@@ -2,26 +2,82 @@
   padding: 0 !important;
 }
 
+// table 修改
 .el-table {
   th {
     background: $table-th-bak !important;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 1px;
+    padding-bottom: 1px;
     color: $table-th-color;
+    // height: 30px !important;
   }
   td {
-    padding: 5px 0;
+    padding: 6px 0;
+    font-family: $font-family-typeR;
+    font-size: $table-size-small;
+    color: $table-th-color;
   }
 }
 
-.is-light {
-   .popper__arrow {
-    border: none;
-    &::after{
-      box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
-      border-top-color: white;
+//*左边菜单折叠悬浮样式
+.menu {
+  .el-submenu  {
+    & .el-submenu__title {
+      height: 44px;
+      line-height: 44px;
+      position: relative;
+      -webkit-box-sizing: border-box;
+      white-space: nowrap;
+      list-style: none;
+      border-radius: 22px;
+      padding: 0 !important;
     }
   }
-  box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
-  border: none !important;
+  ul {
+    .el-menu-item {
+      padding-left: 34px !important;
+      font-size: 16px;
+    }
+  }
+  .is-active {
+    .el-submenu__title {
+      background-color: rgb(36, 94, 195) !important;
+      color: #ffffff !important;
+      i {
+        color: #ffffff !important;
+      }
+    }
+  }
+  .el-submenu__icon-arrow {
+    right: 40px;
+    top: 55%;
+  }
+  .el-menu-item {
+    height: 44px;
+    line-height: 44px;
+    border-radius: 22px;
+    box-sizing: border-box;
+    padding: 0 !important;
+  }
+  .is-active {
+    .title {
+      background-color: rgb(36, 94, 195) !important;
+    }
+  }
+}
+
+// tooltip
+.is-light {
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #666666;
+  .popper__arrow {
+    border: none;
+   &::after{
+     box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
+     border-bottom-color: white;
+   }
+ }
+ box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
+ border: none !important;
 }

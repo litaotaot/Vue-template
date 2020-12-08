@@ -1,6 +1,7 @@
 <template>
   <el-container>
-    <el-aside width="200px">
+    <el-aside width="240px">
+      <img src="../assets/img/GENEAN-log.png" alt="">
       <LeftMenu />
     </el-aside>
     <el-container>
@@ -31,7 +32,16 @@ export default {
 
 <style lang='scss' scoped>
 .el-container {
-  .el-containe {
+  .el-aside {
+    img {
+      width: 116px;
+      height: 82px;
+      margin: 20px 0 30px 62px;
+    }
+    box-sizing: border-box;
+    background: #2D75F4;
+  }
+  .el-container {
     background: $bg-rightContainer-color
   }
 }

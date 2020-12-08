@@ -15,7 +15,8 @@ export const NoAuthRouter = [
         hidden: true, // 需要在路由中展示hiddele设置为true
         meta: {
           title: '使用总览',
-          icon: 'el-icon-s-grid',
+          // icon: 'el-icon-s-grid',
+          icon: 'overview', // svg 配置文件
           oprId: 100000
         },
         children: [
@@ -51,7 +52,8 @@ export const NoAuthRouter = [
         hidden: true,
         meta: {
           title: '子项目账单',
-          icon: 'el-icon-s-order',
+          // icon: 'el-icon-s-order',
+          icon: 'bill', // svg 配置文件
           oprId: 200000
         }
       },
@@ -78,8 +80,9 @@ export const NoAuthRouter = [
     ]
   },
   { path: '/login', name: 'login', component: () => import('@/page/login1'), hidden: true },
-  { path: '/404', name: '404', component: () => import('@/page/login1'), hidden: true },
-  { path: '/401', name: '401', component: () => import('@/page/login1'), hidden: true }
+  { path: '/404', name: '404', component: () => import('@/page/errorPage/404'), hidden: true },
+  { path: '/401', name: '401', component: () => import('@/page/errorPage/401'), hidden: true },
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 const router = new VueRouter({

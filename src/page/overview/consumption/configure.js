@@ -4,10 +4,10 @@ export const Configure = {
   tableColumns: () => {
     return [
       { accessor: '_id', label: '序号', type: 'index', width: 50 },
-      { prop: 'a', label: '日期', formatter: (row) => {
+      { prop: 'a', label: '账期', formatter: (row) => {
         return row.a ? formatDate(new Date(row.a), 4) : ''
       } },
-      { prop: 'b', label: '什么日期', formatter: (row) => {
+      { prop: 'b', label: '日期', formatter: (row) => {
         return row.b ? formatDate(new Date(row.b), 3) : ''
       } },
       { prop: 'c', label: '服务类别' },

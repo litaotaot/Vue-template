@@ -1,16 +1,18 @@
 <template>
   <el-menu
-    default-active="2"
+    :default-active="defaultActive"
     class="el-menu-vertical-demo"
     background-color="#2D75F4"
+    active-text-color="#ffffff"
+    text-color="#79B5F9"
+    :unique-opened="true"
     @open="handleOpen"
     @close="handleClose"
+    @select="onSelect"
   >
-
     <template v-if="routers[0].path === '/' && routers[0].children">
       <Menu :routers="routers[0].children" />
     </template>
-
   </el-menu>
 </template>
 
@@ -24,7 +26,8 @@ export default {
   },
   data() {
     return {
-      isCollapse: true
+      isCollapse: true,
+      defaultActive: '100100'
     }
   },
   computed: {
@@ -32,12 +35,27 @@ export default {
       routers: 'authority/router'
     })
   },
+  watch: {
+    $route: function(route) {
+      debugger
+      this.defaultActive = `${route.meta.oprId}`
+      if (route.meta.oprId === 100000) {
+        this.defaultActive = '100100'
+      }
+    }
+  },
+  mounted() {
+    this.initRoute()
+  },
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath)
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath)
+    },
+    onSelect(key, keyPath) {
+    },
+    initRoute() {
+      this.defaultActive = `${this.$route.meta.oprId}`
     }
   }
 }
@@ -45,8 +63,12 @@ export default {
 
 <style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 100%;
-    box-sizing: border-box;
+  position: fixed;
+  top: 132px;
+  width: 201px;
+  min-height: 100%;
+  box-sizing: border-box;
+  margin: 20px;
+  border: none;
 }
 </style>
