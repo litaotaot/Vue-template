@@ -48,6 +48,9 @@ export default {
             lineHeight: 30
           },
           formatter: this.chartInfo.tooltip && this.chartInfo.tooltip.formatter ? this.chartInfo.tooltip.formatter : null
+          // position: function(point, params, dom, rect, size) {
+          //   return [point[1], 0]
+          // }
         },
         legend: {
           data: this.chartInfo.legend && this.chartInfo.legend.data || [],
@@ -85,6 +88,43 @@ export default {
         yAxis: [
           {
             type: 'value',
+            name: '费用',
+            nameLocation: 'start',
+            nameTextStyle: {
+              color: '#999999',
+              fontSize: 10
+            },
+            splitLine: {
+              lineStyle: {
+                type: 'dashed'
+              },
+              show: true
+            },
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: '#999999', // 更改坐标轴文字颜色
+                fontSize: 10 // 更改坐标轴文字大小
+              }
+            },
+            axisLine: { // 改变y轴样式
+              lineStyle: {
+                color: '#D7D7D7',
+                width: 1 // 这里是为了突出显示加上的
+              }
+            },
+            axisTick: { // y轴刻度线
+              show: false
+            }
+          },
+          {
+            type: 'value',
+            name: '任务数',
+            nameLocation: 'start',
+            nameTextStyle: {
+              color: '#999999',
+              fontSize: 10
+            },
             splitLine: {
               lineStyle: {
                 type: 'dashed'

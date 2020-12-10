@@ -5,7 +5,7 @@
       <LeftMenu />
     </el-aside>
     <el-container>
-      <el-header>
+      <el-header v-show="route">
         <HeadNav />
       </el-header>
       <el-main>
@@ -26,6 +26,11 @@ export default {
   components: {
     LeftMenu,
     HeadNav
+  },
+  computed: {
+    route: function() {
+      return this.$route.name !== 'overview'
+    }
   }
 }
 </script>
@@ -36,7 +41,9 @@ export default {
     img {
       width: 116px;
       height: 82px;
-      margin: 20px 0 30px 62px;
+      position: fixed;
+      top: 20px;
+      left: 62px;
     }
     box-sizing: border-box;
     background: #2D75F4;
@@ -47,10 +54,12 @@ export default {
 }
 .el-header {
   padding: 0 20px;
+  margin-bottom: 20px;
   height: 40px !important;
 }
 .el-main {
   width: 100%;
   height: 100%;
+  padding-top: 0;
 }
 </style>

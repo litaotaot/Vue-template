@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       isCollapse: true,
-      defaultActive: '100100'
+      defaultActive: ''
     }
   },
   computed: {
@@ -37,11 +37,7 @@ export default {
   },
   watch: {
     $route: function(route) {
-      debugger
       this.defaultActive = `${route.meta.oprId}`
-      if (route.meta.oprId === 100000) {
-        this.defaultActive = '100100'
-      }
     }
   },
   mounted() {

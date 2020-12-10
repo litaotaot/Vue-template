@@ -61,16 +61,16 @@ export default {
     },
     getTitle(e) {
       switch (e.name) {
-        case 'overview_user':
+        case 'projectBill_user':
           this.titleInfo.title = '用户明细'
           this.titleInfo.icon = ''
           break
-        case 'overview_consumption':
+        case 'projectBill_consumption':
           this.titleInfo.title = '消费明细'
           this.titleInfo.icon = 'el-icon-warning-outline'
           this.titleInfo.content = '本月数据中包含未结算的后付费数据，查询结果仅供参考，不作为对账依据。本月最终账单将在次月初生成，在次月4日10点后可查看。'
           break
-        case 'projectBill':
+        case 'projectBill_subProject':
           this.titleInfo.title = '子项目账单'
           this.titleInfo.icon = ''
           break

@@ -1,5 +1,6 @@
 <template>
   <div class="overview">
+    <HeadNav />
     <div class="overview-container">
       <div class="inlineBeforeCuboid">
         <span>本年使用总览</span>
@@ -99,7 +100,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -109,13 +109,15 @@ import BarCharts from '@/components/Echarts/barChart'
 import LineChart from '@/components/Echarts/lineChart'
 import PieChart from '@/components/Echarts/pieChart'
 import Process from '@/components/Process/process'
+import HeadNav from '@/layout/components/headNav'
 export default {
   name: 'Overview',
   components: {
     BarCharts,
     LineChart,
     PieChart,
-    Process
+    Process,
+    HeadNav
   },
   data() {
     return {
@@ -247,6 +249,7 @@ export default {
           {
             name: '任务数',
             type: 'line',
+            yAxisIndex: 1,
             data: [1400, 1782, 1351, 1604, 1140, 1580],
             symbol: 'none',
             lineStyle: {
@@ -346,11 +349,11 @@ export default {
   methods: {
     monthDetails() {
       // this.$router.push({ path: '/consumption' })
-      this.$router.push({ path: '/overview/consumption' })
+      this.$router.push({ path: '/projectBill/consumption' })
       // 需匹配左侧menu
     },
     userDetails() {
-      this.$router.push({ path: '/overview/user' })
+      this.$router.push({ path: '/projectBill/user' })
     }
   }
 }
