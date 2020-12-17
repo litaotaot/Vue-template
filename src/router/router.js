@@ -54,7 +54,7 @@ export const NoAuthRouter = [
         hidden: true,
         // redirect: '/projectBill/consumption',
         meta: {
-          title: '子项目账单',
+          title: '使用明细',
           // icon: 'el-icon-s-order',
           icon: 'bill', // svg 配置文件
           oprId: 200000,
@@ -89,7 +89,7 @@ export const NoAuthRouter = [
             component: () => import('@/page/projectBill/subProject'),
             hidden: true,
             meta: {
-              title: '子项目明细',
+              title: '子项目账单',
               icon: '',
               oprId: 200300
             }
@@ -98,7 +98,7 @@ export const NoAuthRouter = [
       }
     ]
   },
-  { path: '/login', name: 'login', component: () => import('@/page/login1'), hidden: true },
+  { path: '/login', name: 'login', component: () => import('@/page/login'), hidden: true },
   { path: '/404', name: '404', component: () => import('@/page/errorPage/404'), hidden: true },
   { path: '/401', name: '401', component: () => import('@/page/errorPage/401'), hidden: true },
   { path: '*', redirect: '/404', hidden: true }

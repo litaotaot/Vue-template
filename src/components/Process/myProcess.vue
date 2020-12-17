@@ -2,7 +2,7 @@
   <div class="my-process">
     <div class="processContainer">
       <div ref="lineLen" class="lineLen" />
-      <span>{{ data.line }}</span>
+      <span ref="hint">{{ data[mark]+unit }}</span>
     </div>
   </div>
 </template>
@@ -18,6 +18,22 @@ export default {
       default() {
         return {}
       }
+    },
+    mark: {
+      type: String,
+      default: ''
+    },
+    color: {
+      type: String,
+      default: '#3585FF'
+    },
+    unit: {
+      type: String,
+      default: ''
+    },
+    size: {
+      type: String,
+      default: '14'
     }
   },
   data() {
@@ -34,9 +50,11 @@ export default {
     // 控制完成进度显示
     lineWidth() {
       this.$refs.lineLen.style.width =
-        (Math.round((this.data.line / this.data.all) * 10000) / 100).toFixed(
+        (Math.round((this.data[this.mark] / this.data.all) * 10000) / 100).toFixed(
           0
         ) + '%'
+      this.$refs.lineLen.style.background = this.color
+      this.$refs.hint.style.fontSize = this.size + 'px'
     }
   }
 }
@@ -55,6 +73,7 @@ export default {
       box-shadow: 3px 0 5px 0 rgba(0,0,0,0.15);
     }
     span {
+      font-family: $font-family-typeR;
       font-size: 14px;
       color: #999999;
       margin-left: 10px;

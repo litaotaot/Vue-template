@@ -5,12 +5,17 @@
     </div>
     <div class="bottom">
       <ul>
-        <li v-for="(item,index) in datab" :key="index">
+        <li v-for="(item,index) in processInfo.data" :key="index">
           <span>{{ item.name }} </span>
           <span class="process">
-            <!-- <el-progress color="#3585FF" :stroke-width="10" :percentage="50" />
-            <el-progress color="#0EEDF1" :stroke-width="10" :percentage="70" /> -->
-            <MyProcess :data="item" />
+            <template v-if="template">
+
+              <el-progress color="#3585FF" :stroke-width="10" :percentage="60" />
+            </template>
+            <template v-else>
+              <MyProcess :data="item" mark="line" color="#3585FF" :unit="processInfo.unit" :size="processInfo.size" />
+              <MyProcess v-if="item.cold" :data="item" mark="cold" color="#0EEDF1" :unit="processInfo.unit" :size="processInfo.size" />
+            </template>
           </span>
         </li>
       </ul>
@@ -27,66 +32,18 @@ export default {
   },
   props: {
     processInfo: {
-      type: Array,
+      type: Object,
       default() {
-        return []
+        return {}
       }
+    },
+    template: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
-      datab: [
-        {
-          line: 1000,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 340,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 170,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 680,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 100,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 1000,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 340,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 170,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 680,
-          name: '用户1',
-          all: 1000
-        },
-        {
-          line: 100,
-          name: '用户1',
-          all: 1000
-        }
-      ]
     }
   },
   computed: {
@@ -123,14 +80,19 @@ export default {
   }
   .bottom {
     padding: px2Rem(20) px2Rem(30);
-    overflow-y: scroll;
+    overflow-y: hidden;
     box-sizing: border-box;
     height: px2Rem(330);
-    li {
+    ul {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      flex-wrap: wrap;
+      li {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: px2Rem(15) 0;
+      width: 100%;
       span {
         &:nth-child(1) {
           font-size: 16px;
@@ -140,6 +102,7 @@ export default {
           width: 85%;
         }
       }
+    }
     }
   }
 }

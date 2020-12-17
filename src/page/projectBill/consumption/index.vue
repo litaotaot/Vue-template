@@ -5,9 +5,9 @@
         <el-date-picker
           v-model="value2"
           type="month"
-          placeholder="选择月"
+          placeholder="账期"
         />
-        <el-select v-model="value" placeholder="请选择">
+        <el-select v-model="value" placeholder="产品">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -15,7 +15,7 @@
             :value="item.value"
           />
         </el-select>
-        <el-select v-model="value" placeholder="请选择">
+        <el-select v-model="value" placeholder="消费类型">
           <el-option
             v-for="item in options"
             :key="item.value"

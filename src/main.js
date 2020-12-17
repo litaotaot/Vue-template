@@ -4,6 +4,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueRouter from 'vue-router'
 import store from './store'
 import router from './router/router'
+import i18n from './lang'
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 import App from './App.vue'
 
@@ -17,5 +18,6 @@ Vue.use(ElementUI, { size: window.innerWidth > 1366 ? 'medium' : 'mini' })
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

@@ -5,7 +5,7 @@ function getPath(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = 'BGI Operation'
+const name = 'BGI GENEAN'
 
 const port = process.env.port || process.env.npm_config_port || 9528
 

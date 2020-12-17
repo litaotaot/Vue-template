@@ -78,17 +78,17 @@
       </div>
       <div>
         <div class="overview-container-process">
-          <Process>
+          <Process :process-info="data">
             <template slot="spanContent">
               <div>接收样本数 (2020)</div>
             </template>
           </Process>
-          <Process>
+          <Process :process-info="data" template="process">
             <template slot="spanContent">
               <div>交付任务书/子项目数 (2020)</div>
             </template>
           </Process>
-          <Process>
+          <Process :process-info="data1">
             <template slot="spanContent">
               <div>存储情况</div>
               <div>
@@ -343,6 +343,71 @@ export default {
             }}
           ]
         }
+      },
+      data: {
+        data: [
+          {
+            line: 1000,
+            name: '用户1',
+            all: 1000
+          },
+          {
+            line: 340,
+            name: '用户2',
+            all: 1000
+          },
+          {
+            line: 170,
+            name: '用户3',
+            all: 1000
+          },
+          {
+            line: 680,
+            name: '用户4',
+            all: 1000
+          },
+          {
+            line: 100,
+            name: '用户5',
+            all: 1000
+          }
+        ]
+      },
+      data1: {
+        unit: 'PB',
+        size: '12',
+        data: [
+          {
+            line: 1000,
+            name: '用户1',
+            all: 1000,
+            cold: 600
+          },
+          {
+            line: 340,
+            name: '用户2',
+            all: 1000,
+            cold: 600
+          },
+          {
+            line: 170,
+            name: '用户3',
+            all: 1000,
+            cold: 300
+          },
+          {
+            line: 680,
+            name: '用户4',
+            all: 1000,
+            cold: 600
+          },
+          {
+            line: 100,
+            name: '用户5',
+            all: 1000,
+            cold: 320
+          }
+        ]
       }
     }
   },
@@ -373,6 +438,7 @@ export default {
         width: 49%;
         background: #ffffff;
         box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
+        border-radius: 5px;
         .year-top {
           width: 100%;
           height: px2Rem(45);
@@ -439,6 +505,7 @@ export default {
       box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.78);
       background: #ffffff;
       margin-bottom: 20px;
+      border-radius: 5px;
       >div {
         &:nth-child(1) {
           display: flex;

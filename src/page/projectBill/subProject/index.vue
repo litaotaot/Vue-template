@@ -4,9 +4,10 @@
       <div>
         <el-date-picker
           v-model="value2"
-          type="month"
-
-          placeholder="BMS申请日期"
+          type="daterange"
+          range-separator="-"
+          start-placeholder="BM立项日期"
+          end-placeholder="BM立项日期"
         />
         <el-input
           v-model="input1"
@@ -106,7 +107,7 @@ export default {
     &:nth-child(1) {
       .el-date-editor.el-input, .el-date-editor.el-input__inner {
         margin-right: px2Rem(20);
-        width: px2Rem(180);
+        width: px2Rem(260);
       }
       .el-input {
         margin-right: px2Rem(20);
